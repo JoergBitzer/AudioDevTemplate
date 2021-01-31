@@ -1,14 +1,15 @@
 #pragma once
-
+#include <vector>
 #include <juce_audio_processors/juce_audio_processors.h>
-
+#include "PresetHandler.h"
 //==============================================================================
-class AudioPluginAudioProcessor  : public juce::AudioProcessor
+class TemplateAudioProcessor  : public juce::AudioProcessor
 {
 public:
+    friend class TemplateAudioProcessorEditor;
     //==============================================================================
-    AudioPluginAudioProcessor();
-    ~AudioPluginAudioProcessor() override;
+    TemplateAudioProcessor();
+    ~TemplateAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -43,6 +44,16 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    CriticalSection m_protect;
+    float m_fs; // sampling rate is always needed
+
+    //Parameterhandling
+    std::unique_ptr<AudioProcessorValueTreeState> m_parameterVTS;
+    std::vector <std::unique_ptr<RangedAudioParameter>> m_paramVector;
+	PresetHandler m_presets;
+#if WITH_MIDIKEYBOARD    
+    MidiKeyboardState m_keyboardState;
+#endif
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TemplateAudioProcessor)
 };

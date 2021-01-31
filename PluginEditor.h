@@ -1,22 +1,31 @@
 #pragma once
 
 #include "PluginProcessor.h"
+#include "JadeLookAndFeel.h"
+#include "PresetHandler.h"
+
 
 //==============================================================================
-class AudioPluginAudioProcessorEditor  : public juce::AudioProcessorEditor
+class TemplateAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
-    explicit AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor&);
-    ~AudioPluginAudioProcessorEditor() override;
+    
+    explicit TemplateAudioProcessorEditor (TemplateAudioProcessor&);
+    ~TemplateAudioProcessorEditor() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
 
 private:
+    JadeLookAndFeel m_jadeLAF;
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    AudioPluginAudioProcessor& processorRef;
+    TemplateAudioProcessor& m_processorRef;
+    PresetComponent m_presetGUI;
+#if WITH_MIDIKEYBOARD    
+    MidiKeyboardComponent m_keyboard;
+#endif
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TemplateAudioProcessorEditor)
 };

@@ -20,7 +20,7 @@ project(AUDIO_PLUGIN_TEMPLATE VERSION 0.0.1)
 #    `kAudioUnitType_Output`, `kAudioUnitType_Panner`
 
 # add_compile_definitions(FACTORY_PRESETS) # use this if you have finally some presets to add (see binary files below)
-
+add_compile_definitions(WITH_MIDIKEYBOARD)
 
 juce_add_plugin(AudioPluginTemplate
     # VERSION ...                               # Set this if the plugin version is different to the project version
