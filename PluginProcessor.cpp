@@ -155,7 +155,11 @@ bool TemplateAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts)
 void TemplateAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                               juce::MidiBuffer& midiMessages)
 {
+ #if WITH_MIDIKEYBOARD  
+	m_keyboardState.processNextMidiBuffer(midiMessages, 0, buffer.getNumSamples(), true);
+#else
     juce::ignoreUnused (midiMessages);
+#endif
 
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -182,6 +186,10 @@ void TemplateAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         juce::ignoreUnused (channelData);
         // ..do something to the data...
     }
+#if WITH_MIDIKEYBOARD  
+    midiMessages.clear(); // except you want to create new midi messages, but than say so 
+    // by setting NEEDS_MIDI_OUTPUT in CMakeLists.txt
+#endif
 }
 
 //==============================================================================
