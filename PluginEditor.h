@@ -26,6 +26,7 @@ private:
 #if WITH_MIDIKEYBOARD    
     MidiKeyboardComponent m_keyboard;
 #endif
+    // plugin specific components
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TemplateAudioProcessorEditor)
 };
