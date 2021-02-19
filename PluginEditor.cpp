@@ -1,10 +1,8 @@
+
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "PlugInGUISettings.h"
 
-const int g_minGuiSize_x(500);
-const int g_maxGuiSize_x(1500);
-const int g_minGuiSize_y(200);
-const float g_guiratio = float(g_minGuiSize_y)/g_minGuiSize_x;
 //==============================================================================
 #if WITH_MIDIKEYBOARD   
 TemplateAudioProcessorEditor::TemplateAudioProcessorEditor (TemplateAudioProcessor& p)
