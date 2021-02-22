@@ -18,7 +18,7 @@ This template provides a first step for effects and synth.
 4. rename all instances of "Template" in the Files with something apropriate 
     (use a renaming-tool like   "sed -i 's/Template/YourNewProjectName/g' *.*")
     change/rename line 7 in CMakeLists.txt, since this was not renamed (CAPITILIZED)
-5. Add your new subdiretory to the master CMakeLists.txt file
+5. Add your new subdiretory to the main CMakeLists.txt (in main directory AudioDev) file
 6. Start coding your plugin
 
 
