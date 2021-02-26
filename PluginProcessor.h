@@ -54,6 +54,8 @@ private:
 #if WITH_MIDIKEYBOARD    
     MidiKeyboardState m_keyboardState;
 #endif
+    // Your plugin stuff
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TemplateAudioProcessor)
 };

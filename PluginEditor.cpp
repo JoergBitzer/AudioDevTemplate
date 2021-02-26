@@ -55,4 +55,9 @@ void TemplateAudioProcessorEditor::resized()
 #endif
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+
+    int width = getWidth();
+	float scaleFactor = float(width)/g_minGuiSize_x;
+
+    // use setBounds with scaleFactor
 }
