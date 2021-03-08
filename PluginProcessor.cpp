@@ -32,7 +32,7 @@ TemplateAudioProcessor::TemplateAudioProcessor()
         "unitname",
         AudioProcessorParameter::genericParameter));
     
-    m_parameterVTS = std::make_unique<AudioProcessorValueTreeState>(*this, nullptr, Identifier("FiltarborVTS"),
+    m_parameterVTS = std::make_unique<AudioProcessorValueTreeState>(*this, nullptr, Identifier("TemplateVTS"),
         AudioProcessorValueTreeState::ParameterLayout(m_paramVector.begin(), m_paramVector.end()));
 
 	m_presets.setAudioValueTreeState(m_parameterVTS.get());
