@@ -75,6 +75,8 @@ target_compile_definitions(AudioPluginTemplate
         JUCE_REPORT_APP_USAGE=0
         JUCE_VST3_CAN_REPLACE_VST2=0)
 
+# for binaries you can add them directly or recursevly (examples for both methods below, dont forget to 
+# to add the binaries in target_link_libraries below)        
 # If your target needs extra binary assets, you can add them here. The first argument is the name of
 # a new static library target that will include all the binary resources. There is an optional
 # `NAMESPACE` argument that can specify the namespace of the generated binary data class. Finally,
@@ -110,8 +112,9 @@ target_compile_definitions(AudioPluginTemplate
 target_link_libraries(AudioPluginTemplate
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
-        # AudioPluginTemplate-binary
+        # AudioPluginTemplate-binary # or here if we used the recursice method
         juce::juce_audio_utils
+        # juce::juce_opengl  # if we want to use opengl
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
