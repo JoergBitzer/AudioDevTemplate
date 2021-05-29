@@ -120,6 +120,12 @@ void TemplateAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    // sometimes you need the number of channels.
+    // Since we only support if in and output is the same, we can just ask for input
+    // 
+    int nrofchannels = this->getMainBusNumInputChannels();
+    assert(("number of channels should never be zero", nrofchannels>0));
+
     juce::ignoreUnused (samplesPerBlock);
     m_fs = sampleRate;
 }
