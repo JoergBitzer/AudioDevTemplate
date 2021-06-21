@@ -36,12 +36,13 @@ TemplateAudioProcessor::TemplateAudioProcessor()
         AudioProcessorValueTreeState::ParameterLayout(m_paramVector.begin(), m_paramVector.end()));
 
 	m_presets.setAudioValueTreeState(m_parameterVTS.get());
-#ifdef FACTORY_PRESETS    
-    m_presets.DeployFactoryPresets();
-#endif
     // if needed add categories
     // m_presets.addCategory(StringArray("Unknown", "Soft", "Medium", "Hard", "Experimental"));
     // m_presets.addCategory(JadeSynthCategories);
+#ifdef FACTORY_PRESETS    
+    m_presets.DeployFactoryPresets();
+#endif
+
 	m_presets.loadfromFileAllUserPresets();    
 }
 
