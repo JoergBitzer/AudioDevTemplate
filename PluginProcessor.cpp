@@ -124,7 +124,7 @@ void TemplateAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     // sometimes you need the number of channels.
     // Since we only support if in and output is the same, we can just ask for input
     // 
-    int nrofchannels = this->getMainBusNumInputChannels();
+    int nrofchannels = this->getMainBusNumOutputChannels();
     jassert(("number of channels should never be zero", nrofchannels>0));
 
     juce::ignoreUnused (samplesPerBlock);
