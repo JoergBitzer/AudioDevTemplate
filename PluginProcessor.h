@@ -43,6 +43,9 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    float getScaleFactor(){return m_pluginScaleFactor;};
+    void setScaleFactor(float newscalefactor){m_pluginScaleFactor = newscalefactor;};
+
 private:
     CriticalSection m_protect;
     float m_fs; // sampling rate is always needed
@@ -51,6 +54,7 @@ private:
     std::unique_ptr<AudioProcessorValueTreeState> m_parameterVTS;
     std::vector <std::unique_ptr<RangedAudioParameter>> m_paramVector;
 	PresetHandler m_presets;
+    float m_pluginScaleFactor = 1.0;    
 #if WITH_MIDIKEYBOARD    
     MidiKeyboardState m_keyboardState;
 #endif

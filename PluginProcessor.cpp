@@ -217,6 +217,11 @@ void TemplateAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 	auto state = m_parameterVTS->copyState();
+    ValueTree vtpluginsize("PluginSize");
+    vtpluginsize.setProperty("ScaleFactor",m_pluginScaleFactor,nullptr);
+    state.appendChild(vtpluginsize,nullptr);
+
+
 	std::unique_ptr<XmlElement> xml(state.createXml());
 	copyXmlToBinary(*xml, destData);
 
@@ -230,7 +235,16 @@ void TemplateAudioProcessor::setStateInformation (const void* data, int sizeInBy
 
 	if (xmlState.get() != nullptr)
 		if (xmlState->hasTagName(m_parameterVTS->state.getType()))
-			m_parameterVTS->replaceState(ValueTree::fromXml(*xmlState));
+        {
+            ValueTree vt = ValueTree::fromXml(*xmlState);
+            ValueTree subvt = vt.getChildWithName("PluginSize");
+            if (subvt.isValid())
+            {
+                float val = subvt.getProperty("ScaleFactor");
+                m_pluginScaleFactor = val;
+            }
+			m_parameterVTS->replaceState(vt);
+        }
 
 }
 
