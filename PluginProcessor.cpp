@@ -25,8 +25,8 @@ TemplateAudioProcessor::TemplateAudioProcessor()
         [](const String& text) {return text.getFloatValue(); }));
 //*/
     // this is just a placeholder (necessary for compiling/testing the template)
-    m_paramVector.push_back(std::make_unique<AudioParameterFloat>("ExampeID",
-        "Exampple Name",
+    m_paramVector.push_back(std::make_unique<AudioParameterFloat>("ExampleID",
+        "Example Name",
         NormalisableRange<float>(1.f, 2.f),
         1.5f,
         "unitname",
@@ -242,7 +242,11 @@ void TemplateAudioProcessor::setStateInformation (const void* data, int sizeInBy
             {
                 float val = subvt.getProperty("ScaleFactor");
                 m_pluginScaleFactor = val;
+                vt.removeChild(subvt, nullptr);
             }
+            juce::String presetname(xmlState->getStringAttribute("presetname"));
+            m_presets.setCurrentPresetName(presetname);
+
 			m_parameterVTS->replaceState(vt);
         }
 
